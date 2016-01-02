@@ -1,6 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
+var data = require('./data');
+
 module.exports = [
     {
       entry: './app/main.js',
@@ -20,5 +23,8 @@ module.exports = [
               }
           ]
       },
+      plugins: [
+          new StaticSiteGeneratorPlugin('bundle.js', data.routes, data)
+      ]
   }
 ];

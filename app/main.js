@@ -1,8 +1,9 @@
-import Button from 'react-bootstrap/lib/Button';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Router, Route, Link, browserHistory } from 'react-router';
+
+import Root from require('./app/Root.jsx');
 
 class Header extends React.Component {
   render() {
@@ -22,11 +23,11 @@ class ImageList extends React.Component {
   }
 }
 
-class ImageDetailPage = React.createClass({
+class ImageDetailPage extends React.Component {
   render() {
     return <h2>Details</h2>
   }
-});
+}
 
 class StreetartTuApp extends React.Component {
   render() {
@@ -43,4 +44,16 @@ var images = [
   'IMG_20151224_082023.jpg'
 ];
 
-ReactDOM.render(<StreetartTuApp images={images}/>, document.getElementById('streetartu'));
+var tuApp = <StreetartTuApp images={images} />
+ReactDOM.render(
+  <Router history={browserHistory}>
+    <Route path="/" component={tuApp} />
+  </Router>
+, document.getElementById('streetartu'));
+
+module.exports = function render(locals, callback) {
+   Router.run(Routes, locals.path, function (Handler) {
+     var html = React.renderToStaticMarkup(React.createElement(Handler, locals))
+     callback(null, '<!DOCTYPE html>' + html)
+   });
+};
