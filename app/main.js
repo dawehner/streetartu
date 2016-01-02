@@ -2,32 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Router, Route, Link, browserHistory } from 'react-router';
+import Root from './Root.js';
 
-import Root from require('./app/Root.jsx');
-
-class Header extends React.Component {
-  render() {
-    return <header></header>
-  }
-}
-
-class ImageList extends React.Component {
-  render() {
-    var images = this.props.images.map(function (image) {
-      var image_url = "images/" + image;
-      return <img width="800px" src={image_url} />
-    });
-    return <div className="image-list">
-      {images}
-    </div>;
-  }
-}
-
-class ImageDetailPage extends React.Component {
-  render() {
-    return <h2>Details</h2>
-  }
-}
+import ImageList from './components/ImageList.js';
+import Header from './components/Header.js';
 
 class StreetartTuApp extends React.Component {
   render() {
@@ -50,10 +28,3 @@ ReactDOM.render(
     <Route path="/" component={tuApp} />
   </Router>
 , document.getElementById('streetartu'));
-
-module.exports = function render(locals, callback) {
-   Router.run(Routes, locals.path, function (Handler) {
-     var html = React.renderToStaticMarkup(React.createElement(Handler, locals))
-     callback(null, '<!DOCTYPE html>' + html)
-   });
-};

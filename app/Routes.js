@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Router, Route, DefaultRoute } from 'react-router';
 
-import Root from './components/Root.js';
-import Index from './components/Index.js';
+import Root from './Root.js';
+import Index from './Index.js';
 
 var Routes = {
   <Route handler={Root} path='/'>
