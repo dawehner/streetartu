@@ -24,33 +24,5 @@ module.exports = [
           ]
       }
   },
-/**
-  {
-    entry: './app/entry.js',
-
-    output: {
-      filename: 'bundle_static.js',
-      path: __dirname,
-      libraryTarget: 'umd'
-    },
-
-    module: {
-      loaders: [
-        {
-          test: /.jsx?$/,
-          loader: 'babel-loader',
-          exclude: /node_modules/,
-          query: {
-            presets: ['es2015', 'react']
-          }
-        }
-      ]
-    }
-
-//    plugins: [
- //     new StaticSiteGeneratorPlugin('bundle_static.js', data.routes, data)
-  //  ]
-  }
-*/
 ];
 
