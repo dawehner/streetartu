@@ -1,10 +1,17 @@
-var React = require('react')
-var Router = require('react-router')
-var Routes = require('./Routes.js')
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ReactDOMServer from 'react-dom/server';
+import { createHistory, createMemoryHistory } from 'history';
+import { Router, RoutingContext, match } from 'react-router';
 
-module.exports = function render(locals, callback) {
-  Router.run(Routes, locals.path, function (Handler) {
-    var html = React.renderToStaticMarkup(React.createElement(Handler, locals))
-    callback(null, '<!DOCTYPE html>' + html)
-  })
-}
+import routes from './Routes.js';
+
+// Exported static site renderer:
+export default (locals, callback) => {
+  const history = createMemoryHistory();
+  const location = history.createLocation(locals.path);
+
+  match({ routes, location }, (error, redirectLocation, renderProps) => {
+    return ReactDOMServer.renderToString(<RoutingContext {...renderProps} />);
+  });
+};

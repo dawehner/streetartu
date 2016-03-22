@@ -6,14 +6,16 @@ var RouteHandler = Router.RouteHandler;
 
 class Root extends React.Component {
   render() {
-    return <html>
-      <head>
-        <title>{this.props.title}</title>
-      </head>
-      <body>
-        <RouteHandler {...this.props} />
-      </body>
-    </html>
+    return (
+      <html>
+        <head>
+          <title>{this.props.title}</title>
+        </head>
+        <body>
+          {React.cloneElement(this.props.children, ...this.props)}
+        </body>
+      </html>
+    )
   }
 }
 

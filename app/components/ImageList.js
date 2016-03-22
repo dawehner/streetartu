@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { Link } from 'react-router';
+
 class ImageList extends React.Component {
   render() {
     var images = this.props.images.map(function (image) {
-      var image_url = "images/" + image;
-      return <img width="800px" src={image_url} />
+      var image_url = "images/" + image.filename;
+      return <Link to={`/image/${image.id}`}><img width="800px" src={image_url} /></Link>
     });
     return <div className="image-list">
       {images}
@@ -12,3 +14,4 @@ class ImageList extends React.Component {
   }
 }
 
+module.exports = ImageList;

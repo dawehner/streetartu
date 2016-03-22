@@ -1,12 +1,16 @@
 import React from 'react';
 
-import { Router, Route, DefaultRoute } from 'react-router';
+import { Router, Route, IndexRoute } from 'react-router';
 
 import Root from './Root.js';
 import Index from './Index.js';
+import AboutUs from './AboutUs.js';
 
-var Routes = {
-  <Route handler={Root} path='/'>
-    <DefaultRoute handler={index} />
+var routes = (
+  <Route component={Root} path='/'>
+    <IndexRoute component={Index} />
+    <Route component={AboutUs} path='/about-us' />
   </Route>
-};
+);
+
+module.exports = routes;
