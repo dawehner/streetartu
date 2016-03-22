@@ -7,6 +7,7 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 import ImageList from './components/ImageList.js';
 import Header from './components/Header.js';
 import ImageDetailPage from './components/ImageDetailPage.js';
+import AboutUs from './AboutUs.js';
 
 var images = [
   {filename: 'IMG_20151219_160257.jpg', id: 1},
@@ -26,7 +27,9 @@ class StreetartTuAppWrapper extends React.Component {
 class StreetartTuApp extends React.Component {
 
   render() {
-    return <div><Header /><ImageList images={this.props.images} />
+    return <div>
+      <Header />
+      <ImageList images={this.props.images} />
       <div>{this.props.children}</div>
     </div>
   }
@@ -38,7 +41,8 @@ class StreetartTuApp extends React.Component {
 ReactDOM.render((
   <Router>
     <Route path="/" component={StreetartTuAppWrapper}>
-      //<Route path="/image/:imageId" component={ImageDetailPage} />
+      <Route path="/image/:imageId" component={ImageDetailPage} />
+      <Route path="/about" component={AboutUs} />
     </Route>
   </Router>
 ), document.body)
