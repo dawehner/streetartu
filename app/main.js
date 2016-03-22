@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Router, Route, Link, browserHistory } from 'react-router';
+import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router';
 // import Root from './Root.js';
 
 import ImageList from './components/ImageList.js';
 import Header from './components/Header.js';
 import ImageDetailPage from './components/ImageDetailPage.js';
 import AboutUs from './AboutUs.js';
+import createBrowserHistory from 'history/lib/createBrowserHistory'
+import Index from './Index.js';
+
+const history = createBrowserHistory();
 
 var images = [
   {filename: 'IMG_20151219_160257.jpg', id: 1},
@@ -39,8 +43,9 @@ class StreetartTuApp extends React.Component {
 
 
 ReactDOM.render((
-  <Router>
-    <Route path="/" component={StreetartTuAppWrapper}>
+  <Router history={browserHistory}>
+    <Route path="/" component={Index}>
+      <IndexRoute component={StreetartTuAppWrapper} />
       <Route path="/image/:imageId" component={ImageDetailPage} />
       <Route path="/about" component={AboutUs} />
     </Route>

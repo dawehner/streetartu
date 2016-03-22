@@ -2,7 +2,7 @@ import React from 'react';
 
 class AboutUs extends React.Component {
   render() {
-    return '<div>About us</div>';
+    return <div>About us</div>;
   }
 }
 

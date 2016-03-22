@@ -3,7 +3,7 @@ import React from 'react';
 class Index extends React.Component {
   render() {
     return <main>
-      Index component
+      <div>{this.props.children}</div>
     </main>
   }
 }
