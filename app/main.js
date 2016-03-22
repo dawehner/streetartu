@@ -11,9 +11,8 @@ import AboutUs from './components/routes/AboutUs.js';
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import App from './App.js';
 
-const history = createBrowserHistory();
-
 import images from './data/images.js';
+const history = createBrowserHistory();
 
 class StreetartTuAppWrapper extends React.Component {
   render() {
@@ -22,17 +21,13 @@ class StreetartTuAppWrapper extends React.Component {
 }
 
 class StreetartTuApp extends React.Component {
-
   render() {
     return <div>
       <Header />
       <ImageList images={this.props.images} />
     </div>
   }
-
 }
-
-
 
 ReactDOM.render((
   <Router history={browserHistory}>
@@ -43,6 +38,4 @@ ReactDOM.render((
     </Route>
   </Router>
 ), document.body)
-
-//ReactDOM.render(React.createElement(StreetartTuAppWrapper), document.body);
 
