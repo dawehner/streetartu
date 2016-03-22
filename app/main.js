@@ -9,7 +9,7 @@ import Header from './components/Header.js';
 import ImageDetailPage from './components/ImageDetailPage.js';
 import AboutUs from './AboutUs.js';
 import createBrowserHistory from 'history/lib/createBrowserHistory'
-import Index from './Index.js';
+import App from './App.js';
 
 const history = createBrowserHistory();
 
@@ -44,7 +44,7 @@ class StreetartTuApp extends React.Component {
 
 ReactDOM.render((
   <Router history={browserHistory}>
-    <Route path="/" component={Index}>
+    <Route path="/" component={App}>
       <IndexRoute component={StreetartTuAppWrapper} />
       <Route path="/image/:imageId" component={ImageDetailPage} />
       <Route path="/about" component={AboutUs} />
