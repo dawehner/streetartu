@@ -1,7 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 var data = require('./app/data');
 
 module.exports = [

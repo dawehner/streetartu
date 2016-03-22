@@ -33,11 +33,15 @@ class StreetartTuApp extends React.Component {
 
 }
 
+
+
 ReactDOM.render((
-  <Router history={browserHistory}>
+  <Router>
     <Route path="/" component={StreetartTuAppWrapper}>
-      <Route path="/image/:imageId" component={ImageDetailPage} />
+      //<Route path="/image/:imageId" component={ImageDetailPage} />
     </Route>
   </Router>
 ), document.body)
+
+//ReactDOM.render(React.createElement(StreetartTuAppWrapper), document.body);
 
