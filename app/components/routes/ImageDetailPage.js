@@ -4,7 +4,7 @@ import Header from '../Header.js';
 class ImageDetailPage extends React.Component {
   render() {
     var imageId = this.props.params.imageId;
-    console.log(imageId);
+    console.log(window.images);
 
     return <div><Header />
       <h2>Details</h2>

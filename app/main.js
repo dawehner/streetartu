@@ -34,7 +34,6 @@ class StreetartTuApp extends React.Component {
     return <div>
       <Header />
       <ImageList images={this.props.images} />
-      <div>{this.props.children}</div>
     </div>
   }
 
