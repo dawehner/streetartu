@@ -1,6 +1,5 @@
 node_modules
 bundle_static.js
-bundle.js
 
 *.swp
 .DS_Store
