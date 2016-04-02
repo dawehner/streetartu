@@ -18,6 +18,12 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.get('/', function (req, res) {
   res.send('muh');
 });
@@ -38,17 +44,26 @@ var auth = function(req, res, next) {
 };
 
 app.post('/user/login', function (req, res) {
+  console.log(req.body);
   if (req.body !== undefined) {
     var hash = crypto.createHmac('sha256', 'test123')
                      .update(req.body.password)
                      .digest('hex');
-    if (req.body.user == 'admin' && hash == 'eea26bae8836b7d00fb964d5906fbae950be9be02dd4558922054a3c31793926') {
+    console.log(hash);
+    console.log(req.body.username);
+    console.log(req.body.username == 'admin');
+    if (req.body.username == 'admin' && hash == '9e1cdea55a6add8dc6688fbabfd6dd28b1b7896fa39aa36a0bef8f5e6c06c680') {
       req.session.loggedIn = true;
       req.session.save(function(err) {
         console.log(err);
       });
+      console.log(123);
+      res.status(200);
       res.send('log in successful');
       return;
+    }
+    else {
+      // @todo erturn some information about failed login.
     }
   }
   return res.sendStatus(403);

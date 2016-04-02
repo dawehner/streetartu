@@ -6,6 +6,7 @@ class Navigation extends React.Component {
     return <ul>
       <li><IndexLink to={'/'}>Home</IndexLink></li>
       <li><Link to={'/about'}>About us</Link></li>
+      <li><Link to={'/login'}>Login</Link></li>
     </ul>
   }
 }
