@@ -1,6 +1,9 @@
 import React from 'react';
 import Header from '../Header.js';
 import PropTypes from 'react-router';
+import { connect } from 'react-redux'
+
+import { setLogin } from '../../actions';
 
 class Login extends React.Component {
 
@@ -41,6 +44,7 @@ class Login extends React.Component {
   }
 
   redirect () {
+    this.context.store.dispatch(setLogin());
     this.context.history.pushState(null, '/');
   }
 
@@ -60,7 +64,8 @@ class Login extends React.Component {
 }
 
 Login.contextTypes = {
-  history: PropTypes.history
+  history: PropTypes.history,
+  store: React.PropTypes.object
 };
 
 module.exports = Login;

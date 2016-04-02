@@ -12,8 +12,35 @@ import Login from './components/routes/Login.js';
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import App from './App.js';
 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
+
 import images from './data/images.js';
+
 const history = createBrowserHistory();
+
+var initialState = {
+  loggedIn: false
+};
+function appReducer(state = initialState, action) {
+  switch (action.type) {
+    case 'LOGIN':
+      return Object.assign({}, state, {
+        loggedIn: true
+      });
+    case 'LOGOUT':
+      return Object.assign({}, state, {
+        loggedIn: false
+      });
+    default:
+      return state;
+  }
+}
+
+let store = createStore(appReducer);
+store.subscribe(function() {
+  console.log(store.getState());
+});
 
 class StreetartTuAppWrapper extends React.Component {
   render() {
@@ -31,13 +58,15 @@ class StreetartTuApp extends React.Component {
 }
 
 ReactDOM.render((
-  <Router history={browserHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={StreetartTuAppWrapper} />
-      <Route path="/image/:imageId" component={ImageDetailPage} />
-      <Route path="/about" component={AboutUs} />
-      <Route path="/login" component={Login} />
-    </Route>
-  </Router>
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={StreetartTuAppWrapper} />
+        <Route path="/image/:imageId" component={ImageDetailPage} />
+        <Route path="/about" component={AboutUs} />
+        <Route path="/login" component={Login} />
+      </Route>
+    </Router>
+  </Provider>
 ), document.body)
 
