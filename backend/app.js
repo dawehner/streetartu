@@ -81,5 +81,7 @@ app.post('/entries', auth, function (req, res) {
 
 app.post('/user/logout', function (req, res) {
   req.session.destroy();
+  res.status(200);
+  res.send('log out successful');
 });
 

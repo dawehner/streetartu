@@ -9,6 +9,7 @@ import Header from './components/Header.js';
 import ImageDetailPage from './components/routes/ImageDetailPage.js';
 import AboutUs from './components/routes/AboutUs.js';
 import Login from './components/routes/Login.js';
+import Logout from './components/routes/Logout.js';
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import App from './App.js';
 
@@ -65,6 +66,7 @@ ReactDOM.render((
         <Route path="/image/:imageId" component={ImageDetailPage} />
         <Route path="/about" component={AboutUs} />
         <Route path="/login" component={Login} />
+        <Route path="/logout" component={Logout} />
       </Route>
     </Router>
   </Provider>
