@@ -15,7 +15,7 @@ import createBrowserHistory from 'history/lib/createBrowserHistory'
 import App from './App.js';
 
 import { createStore } from 'redux';
-import { Provider } from 'react-redux'
+import { Provider, connect } from 'react-redux'
 
 import images from './data/images.js';
 
@@ -23,7 +23,7 @@ const history = createBrowserHistory();
 
 var initialState = {
   loggedIn: false,
-  images: [],
+  images: images,
 };
 function appReducer(state = initialState, action) {
   switch (action.type) {
@@ -49,20 +49,18 @@ store.subscribe(function() {
   console.log(store.getState());
 });
 
-class StreetartTuAppWrapper extends React.Component {
-  render() {
-    return <StreetartTuApp images={images} />
-  }
-}
+const StreetartTuApp = ({ images }) => (
+  <div>
+    <Header />
+    <ImageList images={images} />
+  </div>
+)
 
-class StreetartTuApp extends React.Component {
-  render() {
-    return <div>
-      <Header />
-      <ImageList images={this.props.images} />
-    </div>
+const StreetartTuAppWrapper = connect((state) => (
+  {
+    images: state.images
   }
-}
+))(StreetartTuApp);
 
 ReactDOM.render((
   <Provider store={store}>

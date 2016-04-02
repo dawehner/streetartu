@@ -10,10 +10,11 @@ var logout = function() {
   }
 };
 
-var addImage = function(uri, info) {
+var addImage = function(id, uri, info) {
   return {
     type: 'ADD_IMAGE',
     image: {
+      id: id,
       uri: uri,
       info: info
     }

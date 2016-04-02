@@ -39,13 +39,15 @@ class AddImage extends React.Component {
         'Content-Type': 'application/json',
       }),
       body: JSON.stringify(this.state),
-    }).then(this.redirect);
+    }).then(function (response) {
+      return response.json();
+    }).then(function(result) {
+      this.redirect(result.id);
+    }.bind(this));
   }
 
-  redirect (response) {
-    console.log(response);
-    console.log(this.state);
-    this.context.store.dispatch(addImage(this.state.uri, this.state.info));
+  redirect (id) {
+    this.context.store.dispatch(addImage(id, this.state.uri, this.state.info));
     this.context.router.push('/');
   }
 

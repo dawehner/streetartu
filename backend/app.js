@@ -57,7 +57,6 @@ app.post('/user/login', function (req, res) {
       req.session.save(function(err) {
         console.log(err);
       });
-      console.log(123);
       res.status(200);
       res.send('log in successful');
       return;
@@ -77,7 +76,7 @@ app.get('/entries', auth, function (req, res) {
 
 app.post('/entries', auth, function (req, res) {
   storage.saveEntry({uri: req.body.uri, info: req.body.info}, function (id) {
-    res.json(id);
+    res.json({'id': id});
   });
 });
 
