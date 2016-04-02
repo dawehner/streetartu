@@ -45,7 +45,7 @@ class Login extends React.Component {
 
   redirect () {
     this.context.store.dispatch(setLogin());
-    this.context.history.pushState(null, '/');
+    this.context.router.push('/');
   }
 
   render() {
@@ -64,7 +64,7 @@ class Login extends React.Component {
 }
 
 Login.contextTypes = {
-  history: PropTypes.history,
+  router: React.PropTypes.object.isRequired,
   store: React.PropTypes.object
 };
 

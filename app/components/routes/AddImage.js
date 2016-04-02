@@ -46,7 +46,7 @@ class AddImage extends React.Component {
     console.log(response);
     console.log(this.state);
     this.context.store.dispatch(addImage(this.state.uri, this.state.info));
-    // this.context.router.push('/');
+    this.context.router.push('/');
   }
 
   render() {
