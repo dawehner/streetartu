@@ -5,11 +5,15 @@ db.serialize(function() {
   db.run('CREATE TABLE images(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, uri VARCHAR (255), info text)');
 });
 
-var saveEntry = function(entry) {
+var saveEntry = function(entry, callback) {
   console.log('save entry');
   var stmt = db.prepare('INSERT INTO images VALUES (NULL, ?, ?)');
   stmt.run(entry.uri, entry.info);
   stmt.finalize();
+
+  db.get('SELECT last_insert_rowid() AS id', function (err, row) {
+    return callback(row.id);
+  });
 };
 
 var listEntries = function(callback) {

@@ -76,7 +76,9 @@ app.get('/entries', auth, function (req, res) {
 });
 
 app.post('/entries', auth, function (req, res) {
-  res.json(storage.saveEntry({uri: req.body.uri, info: req.body.info}));
+  storage.saveEntry({uri: req.body.uri, info: req.body.info}, function (id) {
+    res.json(id);
+  });
 });
 
 app.post('/user/logout', function (req, res) {

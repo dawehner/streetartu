@@ -10,6 +10,7 @@ import ImageDetailPage from './components/routes/ImageDetailPage.js';
 import AboutUs from './components/routes/AboutUs.js';
 import Login from './components/routes/Login.js';
 import Logout from './components/routes/Logout.js';
+import AddImage from './components/routes/AddImage.js';
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import App from './App.js';
 
@@ -21,7 +22,8 @@ import images from './data/images.js';
 const history = createBrowserHistory();
 
 var initialState = {
-  loggedIn: false
+  loggedIn: false,
+  images: [],
 };
 function appReducer(state = initialState, action) {
   switch (action.type) {
@@ -32,6 +34,10 @@ function appReducer(state = initialState, action) {
     case 'LOGOUT':
       return Object.assign({}, state, {
         loggedIn: false
+      });
+    case 'ADD_IMAGE':
+      return Object.assign({}, state, {
+        images: [...state.images, action.image]
       });
     default:
       return state;
@@ -67,6 +73,7 @@ ReactDOM.render((
         <Route path="/about" component={AboutUs} />
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />
+        <Route path="/images/add" component={AddImage} />
       </Route>
     </Router>
   </Provider>

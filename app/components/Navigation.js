@@ -8,6 +8,7 @@ class Navigation extends React.Component {
     var state = this.context.store.getState();
     if (state.loggedIn) {
       logInOutLink = <li><Link to={'/logout'}>Logout</Link></li>;
+      additionalLinks = <li><Link to={'/images/add'}>Add Image</Link></li>;
     }
     else {
       logInOutLink = <li><Link to={'/login'}>Login</Link></li>;
