@@ -1,9 +1,17 @@
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(':memory:');
+var images = require('../app/data/images.js');
 
 db.serialize(function() {
   db.run('CREATE TABLE images(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, uri VARCHAR (255), info text)');
 });
+
+var initialData = function() {
+  var i;
+  for (i = 0; i < images.length; i++) {
+    saveEntry(images[i], () => {});
+  }
+};
 
 var saveEntry = function(entry, callback) {
   console.log('save entry');
@@ -24,4 +32,5 @@ var listEntries = function(callback) {
 
 exports.saveEntry = saveEntry;
 exports.listEntries = listEntries;
+exports.initialData = initialData;
 

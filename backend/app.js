@@ -24,6 +24,8 @@ app.use(function(req, res, next) {
   next();
 });
 
+storage.initialData();
+
 app.get('/', function (req, res) {
   res.send('muh');
 });

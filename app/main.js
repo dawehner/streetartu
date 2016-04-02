@@ -14,17 +14,20 @@ import AddImage from './components/routes/AddImage.js';
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import App from './App.js';
 
+import { addImages } from './actions';
+
 import { createStore } from 'redux';
 import { Provider, connect } from 'react-redux'
 
-import images from './data/images.js';
-
 const history = createBrowserHistory();
 
-var initialState = {
-  loggedIn: false,
-  images: images,
-};
+const initialState = (() => {
+  return {
+    loggedIn: false,
+    images: [],
+  };
+})();
+
 function appReducer(state = initialState, action) {
   switch (action.type) {
     case 'LOGIN':
@@ -39,6 +42,12 @@ function appReducer(state = initialState, action) {
       return Object.assign({}, state, {
         images: [...state.images, action.image]
       });
+
+    case 'ADD_IMAGES':
+      return Object.assign({}, state, {
+        images: state.images.concat(action.images)
+      });
+
     default:
       return state;
   }
@@ -47,6 +56,15 @@ function appReducer(state = initialState, action) {
 let store = createStore(appReducer);
 store.subscribe(function() {
   console.log(store.getState());
+});
+
+fetch('http://localhost:3000/entries', {
+  method: 'GET',
+  mode: 'cors',
+}).then(function (response) {
+  return response.json();
+}).then(function(result) {
+  store.dispatch(addImages(result));
 });
 
 const StreetartTuApp = ({ images }) => (

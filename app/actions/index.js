@@ -21,9 +21,17 @@ var addImage = function(id, uri, info) {
   }
 };
 
+var addImages = function (images) {
+  return {
+    type: 'ADD_IMAGES',
+    images: images
+  }
+}
+
 module.exports = {
   setLogin: login,
   setLogout: logout,
   addImage: addImage,
+  addImages: addImages,
 };
 
