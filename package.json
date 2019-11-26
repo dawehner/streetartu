@@ -24,7 +24,7 @@
     "babel-runtime": "^6.3.19",
     "core-js": "^2.0.0",
     "css-loader": "^0.23.1",
-    "jquery": "^2.1.4",
+    "jquery": "^3.4.1",
     "react": "^0.14.3",
     "react-bootstrap": "^0.28.1",
     "react-dom": "^0.14.3",
